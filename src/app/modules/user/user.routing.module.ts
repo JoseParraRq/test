@@ -10,7 +10,7 @@ const routes: Routes = [
     component:UserListComponent
   },
   {
-    path:'detail',
+    path:':id',//para este tipo de rutas colocar el dos puntos(:) antes del id de esta manera :id
     component:UserDetailComponent
   }
 ];
