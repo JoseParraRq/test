@@ -1,6 +1,8 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { USERS_DATA } from '@data/constants/users.const';
+import { ICardUser } from '@shared/components/cards/card-user/icard-user.metadata';
 
 @Component({
   selector: 'app-user-detail',
@@ -8,7 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
+ public users : ICardUser[] = USERS_DATA;
   public id: number;
+public currentUser?:ICardUser;
   constructor(
     public route: ActivatedRoute
   ) {
@@ -40,10 +44,17 @@ for(var i=0; i<idObject.length;i++){
   console.log(enteroId.valueOf());
   this.id = enteroId.valueOf(); //segunda forma de traer el id que se me ocurrio viendo las propiedades
 }
-
+console.log({
+id:this.id,
+users: this.users  
+});
 }
 
+
   ngOnInit() {
+    this.currentUser = this.users.find(user =>user.id === +this.id);
+    console.log(this.currentUser);
+    
   }
 
 }
