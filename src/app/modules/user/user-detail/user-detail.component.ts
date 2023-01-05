@@ -1,7 +1,8 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { USERS_DATA } from '@data/constants/users.const';
+import { UserService } from '@data/services/api/user.service';
+//import { USERS_DATA } from '@data/constants/users.const';
 import { ICardUser } from '@shared/components/cards/card-user/icard-user.metadata';
 
 @Component({
@@ -10,11 +11,12 @@ import { ICardUser } from '@shared/components/cards/card-user/icard-user.metadat
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
- public users : ICardUser[] = USERS_DATA;
+ public users : ICardUser[];
   public id: number;
 public currentUser?:ICardUser;
   constructor(
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private userservice:UserService
   ) {
   /*
     let idObject = this.route.snapshot.params;
@@ -50,11 +52,13 @@ users: this.users
 });
 }
 
-
   ngOnInit() {
-    this.currentUser = this.users.find(user =>user.id === +this.id);
-    console.log(this.currentUser);
-    
+  this.userservice.getUserById(this.id).subscribe( r=>{
+    if(!r.error){
+      console.log("here the data id",r.data);
+      
+      this.currentUser = r.data;
+    }
+  });
   }
-
 }

@@ -1,4 +1,4 @@
-import { ICardUser } from "@shared/components/cards/card-user/icard-user.metadata";
+/*import { ICardUser } from "@shared/components/cards/card-user/icard-user.metadata";
 
 export const USERS_DATA: ICardUser[] = [
     {
@@ -29,4 +29,4 @@ export const USERS_DATA: ICardUser[] = [
       avatar: 'https://media.istockphoto.com/photos/web-development-picture-id1134696790?s=612x612',
       work:'desarrollador'
     },
-  ];
+  ];*/
